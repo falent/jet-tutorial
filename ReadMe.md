@@ -31,7 +31,7 @@ Jet:
 
 
 
-![1](img\1.PNG)
+![1](\img\1.PNG)
 
 
 
@@ -90,3 +90,19 @@ lets you separate HTML templates from business logic in JS files
 ojet help create
 
 you can get examples of commands 
+
+## Modules
+
+oracle JET applications are inherently modular
+
+an oracle module has its business logic in JS and its view in JS
+
+{{val}}
+
+- Read-write. (it setts listeners everywhere)
+- Two-way data binding
+
+[[val]]
+
+- Read-only. 
+- One-way data binding
