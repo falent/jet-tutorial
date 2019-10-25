@@ -31,9 +31,11 @@ Jet:
 
 
 
-![1](\img\1.PNG)
+![1](img\1.PNG)
 
 
+
+![2](C:\Project\jet-tutorial\img\2.PNG)
 
 ojet build - builds application
 
@@ -106,3 +108,63 @@ an oracle module has its business logic in JS and its view in JS
 
 - Read-only. 
 - One-way data binding
+
+it converts array into a table  
+
+```javascript
+self.dataprovider = new ArrayDataProvider(deptArray, {keyAttributes: 'name', implicitSort: [{attribute: 'name', direction: 'ascending'}]});
+```
+
+## REST Services
+
+getJSON
+
+```javascript
+self.data = ko.observableArray();
+$.getJSON("https://").then
+(
+function(myData) {
+    var tempArray = [];
+    $.each(myData, function () ){
+           tempArray.push( {
+          	name: this.name,
+           population: this.population
+           });
+           });
+		self.data(tempArray);
+});
+self.datasource = new oj.ArrayTableDataSource(
+	self.data,
+    {idAttribute: 'name'}
+)
+```
+
+## For Each
+
+```html
+<oj-bind-for-each data="[[chemicals]]" as="chemical">
+    <template>
+    <span class = "oj-panel oj-panel-alt4">
+        <oj-bind-text value="[[chemical.data.name]]"></oj-bind-text> 
+        </span>
+    </template>
+```
+
+data in model looks like:
+
+self.chemicals = [
+
+{name: "h2o"},
+
+{name: "co4"}
+
+];
+
+Start json 
+
+json-server index.js
+
+```
+<span data-bind="text: $context.row.id"></span>
+```
+
