@@ -36,15 +36,23 @@ MVVM
 **View:**
 
 - behaviors, events and requires knowledge about view model
+- minimize logic in views
+- describe "what" not "how"
+- The View ignores the Model, and uses the View Model to get the information to render and to manage the user interaction.
 
 **ViewModel:**
 
 - Expose properties and commands which view binds
+- The View Model knows the Model, and it can use it and expose it 
 - abstraction of view 
+- javaScript data and logic
+- avoid view-related logic (use custom bindings)
 
 **Model:**
 
 - simple JS Object with properties to hold your data
+- usually server-side
+- In a more generic vision, the Models are all the objects you think about when you have to describe your product; in a web application you get them from the server, maybe in a database.
 
 
 
@@ -64,7 +72,19 @@ The observer design pattern enables us to easily pass data to and from HTML and 
 
 ## Observer Design Pattern
 
+observables are functions
 
+```javascript
+class Vm {
+
+this.word = ko.observable();
+
+}
+
+const myVM = new Vm();
+
+vm.word("New word")
+```
 
 
 
@@ -93,6 +113,14 @@ two way data binding
 ```
 
 
+
+BindingContext tracks all the following information:
+
+- `$parent`: This is the View Model of the parent context; for example, every binding inside a foreach binding will have the foreach view model as `$parent`
+- $parents: This refers to an array with all the parents context; empty for the root View Model. You can use an indexer to traverse the hierarchy (for deep-nesting); for instance, $parents[1] will get you the 2nd ancestor and so on
+- `$root:` This is the View Model of the highest parent; itself for the root view model.
+-  `$rawData`: This is the original View Model, before unwrapping (to understand "unwrapping" better, imagine that you have a property, `x = ko.observable(12)`, and you execute `x()`; you are unwrapping the observable to get the value `12`) 
+-  `$data`: This refers to the unwrapped View Model. 
 
 **Observables**
 
