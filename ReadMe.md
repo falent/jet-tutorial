@@ -928,8 +928,39 @@ $(':checkbox ~ label') //wszystkie labele, które następują po checkboxach na 
 
 
 
+mockserver -p 8080 -m  mocks
+
+**Endpoints for Employees:**
+
+[Create an employee](https://docs.oracle.com/en/cloud/saas/global-human-resources/19a/farws/op-emps-post.html)
+
+[Get all employees](https://docs.oracle.com/en/cloud/saas/global-human-resources/19a/farws/op-emps-get.html)
+
+[Get an employee](https://docs.oracle.com/en/cloud/saas/global-human-resources/19a/farws/op-emps-empsuniqid-get.html)
+
+[Update an employee](https://docs.oracle.com/en/cloud/saas/global-human-resources/19a/farws/op-emps-empsuniqid-patch.html)
+
+https://docs.oracle.com/en/cloud/saas/global-human-resources/19a/farws/api-employees.html
+
+[Get all employee photos](https://docs.oracle.com/en/cloud/saas/global-human-resources/19a/farws/op-emps-empsuniqid-child-photo-get.html)
 
 
+
+
+
+[Get all time records](https://docs.oracle.com/en/cloud/saas/global-human-resources/19a/farws/op-timerecords-get.html)
+
+Method: get
+
+Path: `/hcmRestApi/resources/11.13.18.05/timeRecords`
+
+
+
+
+
+
+
+CSS3 introduced a new layout mode (an alternative to floats and positioning) called flexbox, which is an easy and responsive method of arranging elements on a page. To use flexbox, you simply have to specify the CSS attribute display: flex on the container elements, and any elements within the container (also called flex items) will automatically align into separate columns.
 
 
 
