@@ -1,4 +1,4 @@
-Jet:
+## Jet:
 
 -  is a toolkit of solutions for enterprise JS
 -  provides a stable architecture 
@@ -6,21 +6,21 @@ Jet:
 
 
 
-MVC
+### MVC
 
-Model:
+**Model:**
 
 - Adding and Retrieving items from DB
 - processing data from or to the db
 - speaks only with the controller
 
-View:
+**View:**
 
 - this is the only thing the user ever sees
 - usually consists of HTML/CSS
 - speaks only with the controller (never talks back!!)
 
-Controller:
+**Controller:**
 
 - processes GET/POST/PUT/DESTROY requests
 - All server side logic
@@ -31,13 +31,12 @@ Controller:
 
 
 
-MVVM
+### MVVM
 
 **View:**
 
 - behaviors, events and requires knowledge about view model
-- minimize logic in views
-- describe "what" not "how"
+- minimize logic in views. It describes "what" not "how"
 - The View ignores the Model, and uses the View Model to get the information to render and to manage the user interaction.
 
 **ViewModel:**
@@ -64,7 +63,7 @@ MVVM
 
 
 
-The MVVM design pattern used by Knockout.JSmakes it possible to separate HTML and JS for a better development and mainstance experience
+The MVVM design pattern used by Knockout.JS makes it possible to separate HTML and JS for a better development and mainstance experience
 
 The observer design pattern enables us to easily pass data to and from HTML and JS data objects
 
@@ -72,12 +71,15 @@ The observer design pattern enables us to easily pass data to and from HTML and 
 
 ## Observer Design Pattern
 
-observables are functions
+**Remember observables are functions**. When you define a variable or property as an observable, Knockout tracks when it changes. an `observable` or `observableArray` is a special type of two-way data binding variable used by Knockout
+
+When the value is changed by either the UI or the JS viewModel the **other references to the observable are automatically updated as well**
 
 ```javascript
 class Vm {
-
-this.word = ko.observable();
+constructor() {
+    this.word = ko.observable();
+}
 
 }
 
@@ -90,11 +92,7 @@ vm.word("New word")
 
 ## Data Binding
 
-Knockout
-
-specializes in data binding
-
-binds view in HTML, to business logic in JS
+Knockout is responsible for data binding. Binds view in HTML, to business logic in JS
 
 two way data binding
 
@@ -117,44 +115,39 @@ two way data binding
 BindingContext tracks all the following information:
 
 - `$parent`: This is the View Model of the parent context; for example, every binding inside a foreach binding will have the foreach view model as `$parent`
-- $parents: This refers to an array with all the parents context; empty for the root View Model. You can use an indexer to traverse the hierarchy (for deep-nesting); for instance, $parents[1] will get you the 2nd ancestor and so on
+- `$parents`: This refers to an array with all the parents context; empty for the root View Model. You can use an indexer to traverse the hierarchy (for deep-nesting); for instance, $parents[1] will get you the 2nd ancestor and so on
 - `$root:` This is the View Model of the highest parent; itself for the root view model.
 -  `$rawData`: This is the original View Model, before unwrapping (to understand "unwrapping" better, imagine that you have a property, `x = ko.observable(12)`, and you execute `x()`; you are unwrapping the observable to get the value `12`) 
 -  `$data`: This refers to the unwrapped View Model. 
 
-**Observables**
-
-Knockout.js używa observables (obserwatorów) do śledzenia właściwości  w ViewModel. Według koncepcji działają jak normalne JavaScript’owe  zmienne, ale pozwalają Knockout’owi *obserwować* ich zmiany i automatycznie aktualizować istotne miejsca w widoku.
-
-an "observable" or "observableArray" is a special type of two-way data binding variable used by Knockout
-
-When the value is changed by either the UI or the JS viewModel the other references to the observable are automatically updated as well
 
 
+### Oracle Jet Components
 
-## Oracle Jet Components
+Powerful & clean way of organising UI Code into self-contained reusable chunks:
 
-powerful & clean way of organising UI Code into self-contained reusable chunks
+- https://www.oracle.com/webfolder/technetwork/jet/jetCookbook.html
+- dev pattern beneficial for large applications, simplifying through encapsulation
 
-dev pattern beneficial for large applications, simplifying through encapsulation
-
-iprove performance by incremental loading of resources
+- improve performance by incremental loading of resources
 
 
 
-## Require.js Text Plugin
 
-Extension of require.js
+### Require.js Plugin
 
-free and open source library included in Oracle JET
+- Extension of require.js
 
-enables you to load resources
+- free and open source library included in Oracle JET
 
-lets you separate HTML templates from business logic in JS files
+- enables you to load resources
+
+- lets you separate HTML templates from business logic in JS files
 
 
 
-## cli 
+
+### cli 
 
 ojet help create
 
@@ -233,13 +226,9 @@ self.chemicals = [
 ];
 ```
 
-Start json 
-
-json-server index.js
 
 
-
-To manipulate data:
+### To manipulate data in table:
 
 in view:
 
@@ -257,7 +246,7 @@ self.manipuleData = function (name){ return name+"hahahahaha"; };
 
 ## Knockout tutorial:
 
-### jednokierunkowy widok:
+one way view. In data bind we are using text attribute. In html it only reads value and doesnt update it!
 
 ```javascript
 // html
@@ -279,7 +268,7 @@ function AppViewModel() {
 ko.applyBindings(new AppViewModel());
 ```
 
-### dwukierunkowy widok:
+both way view. It means in data bind we are using value attribute
 
 ```javascript
 // html
@@ -287,7 +276,7 @@ ko.applyBindings(new AppViewModel());
 <p>Last name: <input data-bind="value: lastName" /></p>
 ```
 
-dodajemy funkcje observable
+we need to add function observable which checks if value changes in the real time!
 
 ```javascript
 //viewmodel
@@ -342,7 +331,7 @@ ko.applyBindings(new AppViewModel());
 <button data-bind="click: capitalizeLastName">Go caps</button>
 ```
 
-dodajemy funkcje observable
+then we are defining normal function `capitalizeLastName`
 
 ```javascript
 function AppViewModel() {
@@ -354,6 +343,113 @@ function AppViewModel() {
     };
 }
 ```
+
+
+
+# Showing and Hiding Elements
+
+ when the button is pressed by the user, it triggers the observable variable to change, which causes the UI to reveal HTML elements that were previously hidden. 
+
+```javascript
+// html
+<html>
+<head> 
+    <title>Data Binding with KnockoutJS</title>
+</head>
+<body> 
+    <button type="button" data-bind="click: updateObservable">Click me</button> 
+    <div data-bind="visible: showExtraData" style="display: none"> 
+        Now you see me! 
+    </div> 
+
+
+    <script type='text/javascript' src='https://static.oracle.com/cdn/jet/v7.2.0/3rdparty/jquery/jquery-3.4.1.js'></script> 
+    <script type='text/javascript' src='https://static.oracle.com/cdn/jet/v7.2.0/3rdparty/knockout/knockout-3.5.0.debug.js'></script> 
+    <script> 
+        function ViewModel() { 
+            var self = this; 
+
+            self.showExtraData = ko.observable(false); 
+
+            self.updateObservable = function() { 
+                self.showExtraData(!self.showExtraData()); 
+            }; 
+        }; 
+
+        var viewModel = new ViewModel(); 
+        ko.applyBindings(viewModel); 
+    </script>
+</body>
+</html>
+```
+
+if you don"t want to use style display you could use something like that:
+
+```html
+<button type="button" data-bind="click: updateObservable">Click me without style defining!</button> 
+<!-- ko if: showExtraData --> 
+<div> 
+    Now you see me! 
+</div> 
+<!-- /ko -->  
+```
+
+
+## Events
+
+TODO
+
+```javascript
+
+<html>
+<head> 
+    <title>Data Binding with KnockoutJS</title>
+</head>
+<body> 
+    <img id="current_book" /> 
+
+    <ul> 
+    <!-- ko foreach: books --> 
+        <li data-bind="text: title, event: { mouseover: $parent.loadImage }"></li> 
+    <!-- /ko --> 
+    </ul> 
+
+
+    <script type='text/javascript' src='https://static.oracle.com/cdn/jet/v7.2.0/3rdparty/jquery/jquery-3.4.1.js'></script> 
+    <script type='text/javascript' src='https://static.oracle.com/cdn/jet/v7.2.0/3rdparty/knockout/knockout-3.5.0.debug.js'></script> 
+    <script> 
+        function ViewModel() { 
+            var self = this; 
+
+            self.books = [ 
+                { 
+                    title: 'Rapid Application Development With CakePHP', 
+                    image: 
+                    'http://ecx.images-amazon.com/images/I/41JC54HEroL._AA160_.jpg' 
+                }, { 
+                    title: '20 Recipes for Programming MVC 3: Faster, Smarter Web Development',
+                    image: 
+                    'http://ecx.images-amazon.com/images/I/51LpqnDq8-L._AA160_.jpg' 
+                }, { 
+                    title: '20 Recipes for Programming PhoneGap: Cross-Platform Mobile Development for Android and iPhone',
+                    image: 
+                    'http://ecx.images-amazon.com/images/I/51AkFkNeUxL._AA160_.jpg' 
+                } 
+            ]; 
+
+            self.loadImage = function(data, event) { 
+                $('#current_book').attr('src', data.image); 
+            }; 
+        }; 
+
+        var viewModel = new ViewModel(); 
+        ko.applyBindings(viewModel); 
+    </script>
+</body>
+</html>
+```
+
+
 
 ## Collections
 
@@ -378,7 +474,7 @@ function AppViewModel() {
 </table>
 ```
 
-dodajemy funkcje observable
+
 
 ```javascript
 // Class to represent a row in the seat reservations grid
@@ -435,7 +531,7 @@ ko.applyBindings(new ReservationsViewModel());
 <button data-bind="click: addSeat">Reserve another seat</button>
 ```
 
-dodajemy funkcje observable
+
 
 ```javascript
 // Class to represent a row in the seat reservations grid
@@ -506,7 +602,7 @@ Note that the `$root.` prefix causes Knockout to look for a `removeSeat` handler
 <button data-bind="click: addSeat">Reserve another seat</button>
 ```
 
-dodajemy funkcje observable
+
 
 ```javascript
 // Class to represent a row in the seat reservations grid
@@ -647,25 +743,200 @@ ko.applyBindings(new WebmailViewModel());
 
 
 
+# SELF = THIS?
+
+You may be wondering why the first line of my class is `var self = this;`. By creating a variable called `self` and assigning it the variable `this`, it provides me a property in my class that I can use inside methods of my class and easily reference other methods or properties in my class.
+
+
+
+# Condition-Based Data Binding
+
+
+
+```js
+<!DOCTYPE html>
+<html>
+<head> 
+    <title>Data Binding with KnockoutJS</title>
+</head>
+<body> 
+
+    <button type="submit" data-bind="text: (id == 0) ? 'Create' : 'Update'"></button> 
+
+    <script type='text/javascript' src='js/knockout-3.2.0.js'></script> 
+    <script> 
+        var viewModel = function() { 
+
+            var self = this; 
+
+            self.id = 0; 
+        }; 
+
+        ko.applyBindings(viewModel); 
+    </script>
+</body>
+</html>
+```
+
+
+
+How to display an array with for each:
+
+```JS
+<!DOCTYPE html>
+<html>
+<head> 
+    <title>Data Binding with KnockoutJS</title>
+</head>
+<body> 
+    <ul> 
+    <!-- ko foreach: books --> 
+        <li data-bind="text: $data"></li> 
+    <!-- /ko --> 
+    </ul> 
+
+    <script type='text/javascript' src='https://static.oracle.com/cdn/jet/v7.2.0/3rdparty/knockout/knockout-3.5.0.debug.js'></script> 
+    <script> 
+        class viewModel { 
+            
+			constructor() {
+			var self = this; 
+            self.books = [ 
+                'Rapid Application Development With CakePHP', 
+                '20 Recipes for Programming MVC 3: Faster, Smarter Web Development',
+                '20 Recipes for Programming PhoneGap: Cross-Platform Mobile Development for Android and iPhone' 
+            ]; 
+            }	
+
+        }; 
+        const vm = new viewModel();
+        ko.applyBindings(vm); 
+    </script>
+</body>
+</html>
+```
+
+The foreach binding was not bound to an HTML tag; instead, **it is placed inside HTML comments.**
+
+How to display an array with for each:
+
+```JS
+<!DOCTYPE html>
+<html>
+<head> 
+    <title>Data Binding with KnockoutJS</title>
+</head>
+<body> 
+
+    <table> 
+        <thead> 
+            <tr> 
+                <th>Title</th> 
+                <th>ISBN</th> 
+                <th>Published</th> 
+            </tr> 
+        </thead> 
+        <tbody data-bind="foreach: books"> 
+            <tr> 
+                <td data-bind="text: title"></td> 
+                <td data-bind="text: isbn"></td> 
+                <td data-bind="text: $parent.formatDate(publishedDate)"></td> 
+            </tr> 
+        </tbody> 
+    </table> 
+
+    <script type='text/javascript' src='https://static.oracle.com/cdn/jet/v7.2.0/3rdparty/knockout/knockout-3.5.0.debug.js'></script> 
+    <script> 
+	class viewModel {
+		constructor() {
+			self.books = [{
+				title: 'Rapid Application Development With CakePHP',
+				isbn: '1460954394',
+				publishedDate: '2011-02-17',
+			}, {
+				title: '20 Recipes for Programming MVC 3:Faster, Smarter Web Development',
+				isbn: '1449309860',
+				publishedDate: '2011-10-14',
+			}, {
+				title: '20 Recipes for Programming PhoneGap:Cross-Platform Mobile Development for Android and iPhone',
+				isbn: '1449319548',
+				publishedDate: '2012-04-06',
+			}, ];
+		}
+
+		formatDate(dateToFormat) {
+			const months = new Array('January', 'February', 'March', 'April',
+				'May', 'June', 'July', 'August', 'September', 'October',
+				'November', 'December');
+
+			const d = new Date(dateToFormat);
+			return months[d.getMonth()] + ' ' + d.getDate() + ', ' +
+				d.getFullYear();
+		};
+	}
+
+
+	const vm = new viewModel();
+
+	ko.applyBindings(vm);
+    </script>
+</body>
+</html>
+```
+
+### jQuery
+
+how to get html object by selector
+
+```JS
+$('#pierwszy')
+    .css({
+        background : 'blue'
+    })
+    .delay(2000)
+    .slideUp()
+    .delay(1000)
+    .fadeIn(1000);
+```
+
+### document Ready
+
+we need to be sure that DOM is read
+
+```JS
+$(document).ready(function() {
+    ...
+})
+```
+
+### get element
+
+we need to be sure that DOM is read
+
+```JS
+$('div.czerwony') //pobranie divów o klasie czerwony
+$('div p') //wszystkie p zawierające się w div
+$('div#cnt > p') //wszystkie p mieszczące się bezpośrednio w div #cnt
+$('p:first-of-type') //pobranie wszystkich p, które są pierwszymi elementami danego typu
+$('img[width=100]') //pobranie wszystkich img, które mają atrybut width="100"
+$(':checkbox ~ label') //wszystkie labele, które następują po checkboxach na danym poziomie drzewa
+```
+
+### 
 
 
 
 
-CSS3 introduced a new layout mode (an alternative to floats and positioning) called flexbox, which is an easy and responsive method of arranging elements on a page. To use flexbox, you simply have to specify the CSS attribute display: flex on the container elements, and any elements within the container (also called flex items) will automatically align into separate columns.
 
 
 
-ECMA zajmuje sie standaryzacja technologii. ECMAScript JS to implementacja tego standartu
-
-document.getElementById("nazwaElementu").innerHTML = ....
 
 
 
-<br>
-    <oj-bind-text value="[[$parent.manipuleData($context.row.name)]]"></oj-bind-text>
 
 
 
-            self.manipuleData = function (name) {
-                return name + "hahahahaha";
-            };
+
+
+
+
