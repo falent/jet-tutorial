@@ -944,7 +944,13 @@ https://docs.oracle.com/en/cloud/saas/global-human-resources/19a/farws/api-emplo
 
 [Get all employee photos](https://docs.oracle.com/en/cloud/saas/global-human-resources/19a/farws/op-emps-empsuniqid-child-photo-get.html)
 
+**Endpoint for Employees occupation as a link from [Get all employees](https://docs.oracle.com/en/cloud/saas/global-human-resources/19a/farws/op-emps-get.html):**
 
+                    "rel": "child",
+                    "href": "https://ecyq-dev1.fs.em2.oraclecloud.com:443/hcmRestApi/resources/11.13.18.05/emps/00020000000EACED00057708000110D935A32C550000004AACED00057372000D6A6176612E73716C2E4461746514FA46683F3566970200007872000E6A6176612E7574696C2E44617465686A81014B597419030000787077080000016EAA28540078/child/assignments",
+                    "name": "assignments",
+                    "kind": "collection"
+Start and EndTime (of assigment or worktime?  https://ecyq-dev1.fs.em2.oraclecloud.com:443/hcmRestApi/resources/11.13.18.05/emps/00020000000EACED00057708000110D935A32C550000004AACED00057372000D6A6176612E73716C2E4461746514FA46683F3566970200007872000E6A6176612E7574696C2E44617465686A81014B597419030000787077080000016EAA28540078/child/assignments )
 
 
 
