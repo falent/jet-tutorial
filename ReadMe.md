@@ -946,7 +946,7 @@ https://docs.oracle.com/en/cloud/saas/global-human-resources/19a/farws/api-emplo
 
 
 
-
+## 
 
 [Get all time records](https://docs.oracle.com/en/cloud/saas/global-human-resources/19a/farws/op-timerecords-get.html)
 
@@ -964,9 +964,9 @@ CSS3 introduced a new layout mode (an alternative to floats and positioning) cal
 
 
 
+## Bootstrap
 
-
-
+system siatkowy dzieli ekran na kolumny do 12 w kazdym rzedzie
 
 
 
